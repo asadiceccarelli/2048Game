@@ -4,45 +4,40 @@ import random
 window = tk.Tk()
 window.title('2048')
 
-intro = tk.Label(
-    text='Welcome to the 2048 game.'
-)
+intro = tk.Label(text='Welcome to the 2048.', font=('Helvetica bold', 20))
 intro.grid(row=0, column=0, columnspan=5, padx=5, pady=5)
 zero_zero = tk.Label(width=4, height=2, font=('Helvetica bold', 40), bg='white')
-zero_zero.grid(row=2, column=1, padx=5, pady=5)
+zero_zero.grid(row=1, column=1, padx=5, pady=5)
 zero_one = tk.Label(width=4, height=2, font=('Helvetica bold', 40), bg='white')
-zero_one.grid(row=2, column=2, padx=5, pady=5)
+zero_one.grid(row=1, column=2, padx=5, pady=5)
 zero_two = tk.Label(width=4, height=2, font=('Helvetica bold', 40), bg='white')
-zero_two.grid(row=2, column=3, padx=5, pady=5)
+zero_two.grid(row=1, column=3, padx=5, pady=5)
 zero_three = tk.Label(width=4, height=2, font=('Helvetica bold', 40), bg='white')
-zero_three.grid(row=2, column=4, padx=5, pady=5)
+zero_three.grid(row=1, column=4, padx=5, pady=5)
 one_zero = tk.Label(width=4, height=2, font=('Helvetica bold', 40), bg='white')
-one_zero.grid(row=3, column=1, padx=5, pady=5)
+one_zero.grid(row=2, column=1, padx=5, pady=5)
 one_one = tk.Label(width=4, height=2, font=('Helvetica bold', 40), bg='white')
-one_one.grid(row=3, column=2, padx=5, pady=5)
+one_one.grid(row=2, column=2, padx=5, pady=5)
 one_two = tk.Label(width=4, height=2, font=('Helvetica bold', 40), bg='white')
-one_two.grid(row=3, column=3, padx=5, pady=5)
+one_two.grid(row=2, column=3, padx=5, pady=5)
 one_three = tk.Label(width=4, height=2, font=('Helvetica bold', 40), bg='white')
-one_three.grid(row=3, column=4, padx=5, pady=5)
+one_three.grid(row=2, column=4, padx=5, pady=5)
 two_zero = tk.Label(width=4, height=2, font=('Helvetica bold', 40), bg='white')
-two_zero.grid(row=4, column=1, padx=5, pady=5)
+two_zero.grid(row=3, column=1, padx=5, pady=5)
 two_one = tk.Label(width=4, height=2, font=('Helvetica bold', 40), bg='white')
-two_one.grid(row=4, column=2)
+two_one.grid(row=3, column=2)
 two_two = tk.Label(width=4, height=2, font=('Helvetica bold', 40), bg='white')
-two_two.grid(row=4, column=3, padx=5, pady=5)
+two_two.grid(row=3, column=3, padx=5, pady=5)
 two_three = tk.Label(width=4, height=2, font=('Helvetica bold', 40), bg='white')
-two_three.grid(row=4, column=4, padx=5, pady=5)
+two_three.grid(row=3, column=4, padx=5, pady=5)
 three_zero = tk.Label(width=4, height=2, font=('Helvetica bold', 40), bg='white')
-three_zero.grid(row=5, column=1, padx=5, pady=5)
+three_zero.grid(row=4, column=1, padx=5, pady=5)
 three_one = tk.Label(width=4, height=2, font=('Helvetica bold', 40), bg='white')
-three_one.grid(row=5, column=2, padx=5, pady=5)
+three_one.grid(row=4, column=2, padx=5, pady=5)
 three_two = tk.Label(width=4, height=2, font=('Helvetica bold', 40), bg='white')
-three_two.grid(row=5, column=3, padx=5, pady=5)
+three_two.grid(row=4, column=3, padx=5, pady=5)
 three_three = tk.Label(width=4, height=2, font=('Helvetica bold', 40), bg='white')
-three_three.grid(row=5, column=4, padx=5, pady=5)
-
-game_over = tk.Label(width=8, height=4)
-game_over.grid(row=1, column=0, columnspan=5)
+three_three.grid(row=4, column=4, padx=5, pady=5)
 
 tiles = [zero_zero, zero_one, zero_two, zero_three,
          one_zero, one_one, one_two, one_three,
@@ -133,38 +128,27 @@ def tile_colour(tile):
 
 
 def up_pressed():
-    first_column = [tiles[0], tiles[4], tiles[8], tiles[12]]
-    first_column_values = []
-    for tile in first_column:
-        first_column_values.append(get_tile_value(tile))
-    second_column = [tiles[1], tiles[5], tiles[9], tiles[13]]
-    second_column_values = []
-    for tile in second_column:
-        second_column_values.append(get_tile_value(tile))
-    third_column = [tiles[2], tiles[6], tiles[10], tiles[14]]
-    third_column_values = []
-    for tile in third_column:
-        third_column_values.append(get_tile_value(tile))
-    forth_column = [tiles[3], tiles[7], tiles[11], tiles[15]]
-    forth_column_values = []
-    for tile in forth_column:
-        forth_column_values.append(get_tile_value(tile))
+    # Top to bottom
+    first_column_values = [get_tile_value(tiles[0]), get_tile_value(tiles[4]),
+                           get_tile_value(tiles[8]), get_tile_value(tiles[12])]
+    second_column_values = [get_tile_value(tiles[1]), get_tile_value(tiles[5]),
+                            get_tile_value(tiles[9]), get_tile_value(tiles[13])]
+    third_column_values = [get_tile_value(tiles[2]), get_tile_value(tiles[6]),
+                           get_tile_value(tiles[10]), get_tile_value(tiles[14])]
+    forth_column_values = [get_tile_value(tiles[3]), get_tile_value(tiles[7]),
+                           get_tile_value(tiles[11]), get_tile_value(tiles[15])]
 
     tiles_reconstructed = [first_column_values, second_column_values, third_column_values, forth_column_values]
 
-    j = 0
-    while j <= 3:
+    for j in range(4):
         for column in tiles_reconstructed:
-            i = 3
-            while i >= 1:
+            for i in range(3, 0, -1):
                 if column[i] == column[i - 1]:
                     column[i - 1] += column[i]
                     column[i] = 0
                 elif column[i - 1] == 0:
                     column[i - 1] = column[i]
                     column[i] = 0
-                i -= 1
-        j += 1
 
     tiles_reconstructed_list = [first_column_values[0], second_column_values[0], third_column_values[0],
                                 forth_column_values[0],
@@ -180,7 +164,7 @@ def up_pressed():
                                                                 third_column_values[3], forth_column_values[3]))]\
             = random.choice([2, 4])
     except IndexError:
-        print('Up not available')
+        return
 
     i = 0
     for tile_value in tiles_reconstructed_list:
@@ -193,38 +177,27 @@ def up_pressed():
 
 
 def down_pressed():
-    first_column = [tiles[12], tiles[8], tiles[4], tiles[0]]
-    first_column_values = []
-    for tile in first_column:
-        first_column_values.append(get_tile_value(tile))
-    second_column = [tiles[13], tiles[9], tiles[5], tiles[1]]
-    second_column_values = []
-    for tile in second_column:
-        second_column_values.append(get_tile_value(tile))
-    third_column = [tiles[14], tiles[10], tiles[6], tiles[2]]
-    third_column_values = []
-    for tile in third_column:
-        third_column_values.append(get_tile_value(tile))
-    forth_column = [tiles[15], tiles[11], tiles[7], tiles[3]]
-    forth_column_values = []
-    for tile in forth_column:
-        forth_column_values.append(get_tile_value(tile))
+    # Bottom to top
+    first_column_values = [get_tile_value(tiles[12]), get_tile_value(tiles[8]),
+                           get_tile_value(tiles[4]), get_tile_value(tiles[0])]
+    second_column_values = [get_tile_value(tiles[13]), get_tile_value(tiles[9]),
+                            get_tile_value(tiles[5]), get_tile_value(tiles[1])]
+    third_column_values = [get_tile_value(tiles[14]), get_tile_value(tiles[10]),
+                           get_tile_value(tiles[6]), get_tile_value(tiles[2])]
+    forth_column_values = [get_tile_value(tiles[15]), get_tile_value(tiles[11]),
+                           get_tile_value(tiles[7]), get_tile_value(tiles[3])]
 
     tiles_reconstructed = [first_column_values, second_column_values, third_column_values, forth_column_values]
 
-    j = 0
-    while j <= 3:
+    for j in range(4):
         for column in tiles_reconstructed:
-            i = 3
-            while i >= 1:
+            for i in range(3, 0, -1):
                 if column[i] == column[i - 1]:
                     column[i - 1] += column[i]
                     column[i] = 0
                 elif column[i - 1] == 0:
                     column[i - 1] = column[i]
                     column[i] = 0
-                i -= 1
-        j += 1
 
     tiles_reconstructed_list = [first_column_values[3], second_column_values[3], third_column_values[3],
                                 forth_column_values[3],
@@ -240,7 +213,7 @@ def down_pressed():
                                                                 third_column_values[3],
                                                                 forth_column_values[3]))] = random.choice([2, 4])
     except IndexError:
-        print('Down not available')
+        return
 
     i = 0
     for tile_value in tiles_reconstructed_list:
@@ -253,38 +226,27 @@ def down_pressed():
 
 
 def left_pressed():
-    first_row = [tiles[0], tiles[1], tiles[2], tiles[3]]
-    first_row_values = []
-    for tile in first_row:
-        first_row_values.append(get_tile_value(tile))
-    second_row = [tiles[4], tiles[5], tiles[6], tiles[7]]
-    second_row_values = []
-    for tile in second_row:
-        second_row_values.append(get_tile_value(tile))
-    third_row = [tiles[8], tiles[9], tiles[10], tiles[11]]
-    third_row_values = []
-    for tile in third_row:
-        third_row_values.append(get_tile_value(tile))
-    forth_row = [tiles[12], tiles[13], tiles[14], tiles[15]]
-    forth_row_values = []
-    for tile in forth_row:
-        forth_row_values.append(get_tile_value(tile))
+    # Left to right
+    first_row_values = [get_tile_value(tiles[0]), get_tile_value(tiles[1]),
+                        get_tile_value(tiles[2]), get_tile_value(tiles[3])]
+    second_row_values = [get_tile_value(tiles[4]), get_tile_value(tiles[5]),
+                         get_tile_value(tiles[6]), get_tile_value(tiles[7])]
+    third_row_values = [get_tile_value(tiles[8]), get_tile_value(tiles[9]),
+                        get_tile_value(tiles[10]), get_tile_value(tiles[11])]
+    forth_row_values = [get_tile_value(tiles[12]), get_tile_value(tiles[13]),
+                        get_tile_value(tiles[14]), get_tile_value(tiles[15])]
 
     tiles_reconstructed = [first_row_values, second_row_values, third_row_values, forth_row_values]
 
-    j = 0
-    while j <= 3:
-        for row in tiles_reconstructed:
-            i = 3
-            while i >= 1:
-                if row[i] == row[i - 1]:
-                    row[i - 1] += row[i]
-                    row[i] = 0
-                elif row[i - 1] == 0:
-                    row[i - 1] = row[i]
-                    row[i] = 0
-                i -= 1
-        j += 1
+    for j in range(4):
+        for column in tiles_reconstructed:
+            for i in range(3, 0, -1):
+                if column[i] == column[i - 1]:
+                    column[i - 1] += column[i]
+                    column[i] = 0
+                elif column[i - 1] == 0:
+                    column[i - 1] = column[i]
+                    column[i] = 0
 
     tiles_reconstructed_list = [first_row_values[0], first_row_values[1], first_row_values[2],
                                 first_row_values[3],
@@ -300,7 +262,7 @@ def left_pressed():
                                                                 third_row_values[3],
                                                                 forth_row_values[3]))] = random.choice([2, 4])
     except IndexError:
-        print('Left not available')
+        return
 
     i = 0
     for tile_value in tiles_reconstructed_list:
@@ -313,38 +275,27 @@ def left_pressed():
 
 
 def right_pressed():
-    first_row = [tiles[3], tiles[2], tiles[1], tiles[0]]
-    first_row_values = []
-    for tile in first_row:
-        first_row_values.append(get_tile_value(tile))
-    second_row = [tiles[7], tiles[6], tiles[5], tiles[4]]
-    second_row_values = []
-    for tile in second_row:
-        second_row_values.append(get_tile_value(tile))
-    third_row = [tiles[11], tiles[10], tiles[9], tiles[8]]
-    third_row_values = []
-    for tile in third_row:
-        third_row_values.append(get_tile_value(tile))
-    forth_row = [tiles[15], tiles[14], tiles[13], tiles[12]]
-    forth_row_values = []
-    for tile in forth_row:
-        forth_row_values.append(get_tile_value(tile))
+    # Right to left
+    first_row_values = [get_tile_value(tiles[3]), get_tile_value(tiles[2]),
+                        get_tile_value(tiles[1]), get_tile_value(tiles[0])]
+    second_row_values = [get_tile_value(tiles[7]), get_tile_value(tiles[6]),
+                         get_tile_value(tiles[5]), get_tile_value(tiles[4])]
+    third_row_values = [get_tile_value(tiles[11]), get_tile_value(tiles[10]),
+                        get_tile_value(tiles[9]), get_tile_value(tiles[8])]
+    forth_row_values = [get_tile_value(tiles[15]), get_tile_value(tiles[14]),
+                        get_tile_value(tiles[13]), get_tile_value(tiles[12])]
 
     tiles_reconstructed = [first_row_values, second_row_values, third_row_values, forth_row_values]
 
-    j = 0
-    while j <= 3:
-        for row in tiles_reconstructed:
-            i = 3
-            while i >= 1:
-                if row[i] == row[i - 1]:
-                    row[i - 1] += row[i]
-                    row[i] = 0
-                elif row[i - 1] == 0:
-                    row[i - 1] = row[i]
-                    row[i] = 0
-                i -= 1
-        j += 1
+    for j in range(4):
+        for column in tiles_reconstructed:
+            for i in range(3, 0, -1):
+                if column[i] == column[i - 1]:
+                    column[i - 1] += column[i]
+                    column[i] = 0
+                elif column[i - 1] == 0:
+                    column[i - 1] = column[i]
+                    column[i] = 0
 
     tiles_reconstructed_list = [first_row_values[3], first_row_values[2], first_row_values[1],
                                 first_row_values[0],
@@ -360,7 +311,7 @@ def right_pressed():
                                                                 third_row_values[3],
                                                                 forth_row_values[3]))] = random.choice([2, 4])
     except IndexError:
-        print('Right not available')
+        return
 
     i = 0
     for tile_value in tiles_reconstructed_list:
@@ -370,11 +321,6 @@ def right_pressed():
             tiles[i]['text'] = tile_value
         tiles[i]['bg'] = tile_colour(tile_value)
         i += 1
-
-
-def game_over(list_of_tiles):
-    if list_of_tiles.count(0) == 0:
-        print('Game Over')
 
 
 up_button = tk.Button(text='Up', command=up_pressed)
